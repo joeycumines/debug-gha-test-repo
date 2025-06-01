@@ -5,8 +5,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  ubuntu-latest:
-    runs-on: ubuntu-latest
+  platform:
+    if: always()
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+          - ubuntu-24.04-arm
+          - windows-11-arm
+          - macos-13
     steps:
       - name: debug action
         uses: docker://ghcr.io/joeycumines/simple-command-output-filter:latest
