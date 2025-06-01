@@ -1,0 +1,12 @@
+name: workflow.yml
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ubuntu-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: debug action
+        uses: docker://ghcr.io/joeycumines/simple-command-output-filter:latest
